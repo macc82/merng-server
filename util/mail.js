@@ -21,7 +21,7 @@ module.exports.sendVerificationMail = async (mailAccount, vToken, host) => {
         to: mailAccount, // list of receivers
         subject: "Account Verification Token", // Subject line
         text: 'Hello,\n\n' + 'Please verify your account by clicking the link: \nhttp:\/\/' + host + '\/confirmation\/' + vToken, // plain text body
-        html: `Hello<br/><br/>Please verify your account by clicking the link: <a href="http://${host}/confirmation/${vToken}">Validate user</a>`, // html body
+        html: `Hello<br/><br/>Please verify your account by clicking the link: <a href="https://${host}/confirmation/${vToken}">Validate user</a>`, // html body
     };
     // send mail with defined transport object
     let url = '';
