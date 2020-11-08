@@ -1,0 +1,22 @@
+{
+  "name": "node-and-mongo",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Miguel Corrales Cortés <miguelale.c.c@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "serve": "node index.js",
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "apollo-server": "^2.18.2",
+    "bcryptjs": "^2.4.3",
+    "graphql": "^15.3.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.10.9",
+    "nodemailer": "^6.4.14"
+  },
+  "keywords": [],
+  "description": "",
+  "devDependencies": {}
+}
