@@ -55,12 +55,21 @@ module.exports = {
 				errors.general = 'Post duplicated';
 				throw new UserInputError('Post duplicated', { errors });
 			}
+			//Limit max records
+			const count = await Post.countDocuments();
+			if (count >= 20)
+            {
+                throw new UserInputError('The maximum number of simultaneous posts has been reached. This is a demo application and is limited to 20 posts.', {
+                    errors: {
+                        maximumPosts: 'The maximum number of simultaneous posts has been reached. This is a demo application and is limited to 20 posts.'
+                    }
+                });
+            }
 
 			const newPost = new Post({
 				body,
 				user: user.id,
 				username: user.username,
-				createdAt: new Date().toISOString()
 			});
 
 			const post = await newPost.save();
@@ -106,7 +115,6 @@ module.exports = {
 						//Append like
 						post.likes.unshift({
 							username: user.username,
-							createdAt: new Date().toISOString()
 						});
 					}
 

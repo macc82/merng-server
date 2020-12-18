@@ -20,11 +20,19 @@ module.exports = {
                     errors.general = 'Comment duplicated';
                     throw new UserInputError('Comment duplicated', { errors });
                 }
+                //Limit max records
+                if (post.comments.length >= 20)
+                {
+                    throw new UserInputError('The maximum number of simultaneous comments has been reached. This is a demo application and is limited to 20 comments.', {
+                        errors: {
+                            maximumComments: 'The maximum number of simultaneous comments has been reached. This is a demo application and is limited to 20 comments.'
+                        }
+                    });
+                }
                 
                 post.comments.unshift({
                     body,
                     username: user.username,
-                    createdAt: new Date().toISOString()
                 });
 
                 await post.save();

@@ -45,6 +45,16 @@ module.exports = {
                     });
                 }
             }
+            //Limit max user accounts to 20
+            const count = await User.countDocuments();
+            if (count >= 20)
+            {
+                throw new UserInputError('The maximum number of simultaneous user accounts has been reached. This is a demo application and is limited to 20 user accounts.', {
+                    errors: {
+                        maximumUsers: 'The maximum number of simultaneous user accounts has been reached. This is a demo application and is limited to 20 user accounts.'
+                    }
+                });
+            }
             // Hash password and create an auth token
             password = await bcrypt.hash(password, 12);
 
@@ -52,7 +62,6 @@ module.exports = {
                 username,
                 password,
                 email,
-                createdAt: new Date().toISOString(),
                 avatarImage
             });
 
